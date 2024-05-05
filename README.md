@@ -3,3 +3,6 @@ Untuk mejalankan program tersebut, pada terminal akan dieksekusi `cargo run --bi
 
 ![image2](/img/image2.png)
 Saat memodifikasi port pada sisi client, maka pada program server juga perlu dilakukan modifikasi portnya menjadi 8080 pada bagian TCP Listener, hal ini membuat server dan client dapat terhubung dengan koneksi websocket yang sama dengan port yang berbeda dari sebelumnya.
+
+![image3](/img/image3.png)
+Pada src/bin/server.rs, mengubah line `bcast_tx.send(text.into())?;` menjadi `bcast_tx.send(format!("{:?}: {}", addr, text))?;` dengan ini messsage yang di broadcast tidak hanya text message, tetapi address dari client yang mengirimkan teks tersebut akan ikut di broadcast juga, lalu pada src/bin/client.rs line `println!("From server: {}", text);` diubah menjadi `println!("Dwiky's Computer - From Server: {}", text);` untuk modifikasi mengikuti tutorial.
